@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:structure="http://xmlns.jcp.org/jsf/composite/components/structure"
+      xmlns:form="http://xmlns.jcp.org/jsf/composite/components/form"
+      >
+<body>
+<ui:composition template="/resources/templates/layout.xhtml">
+	<ui:define name="content">
+   
+
+   
+	    <structure:row>
+        	<f:facet name="main">
+		        <form jsf:id="create-contact">
+		        
+					
+					<form:input label="Firstname" value="#{editedContact.contact.firstname}" required="true" />
+					<form:input label="Lastname" value="#{editedContact.contact.lastname}" required="true" />
+					<form:input label="Tel" value="#{editedContact.contact.telephone}" />
+					<form:input label="Email" value="#{editedContact.contact.email}" />
+					
+					<button jsf:action="#{contactController.save(editedContact.contact)}">Save</button>
+					<button jsf:outcome="index">Back</button>
+				</form>
+			</f:facet> 
+			   
+	    	<f:facet name="sidebar">
+		 		<p><strong>Hilfe-Panel.</strong> Bla bli bub toole infos hier auch...</p>
+			</f:facet>
+	    
+			
+	    </structure:row>
+	    
+	</ui:define>
+
+</ui:composition>    
+</body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:structure="http://xmlns.jcp.org/jsf/composite/components/structure"
+      >
+      
+<body>
+<ui:composition template="/resources/templates/layout.xhtml">
+	<ui:define name="content">
+   
+	    <structure:row>
+	      	<div class="panel">
+		        <h3>Bla</h3>
+		        
+		        <div class="row">
+		        	<div class="large-4 medium-4 columns">
+						<structure:placeholderImage width="270" height="200"/>
+		    		</div>
+		        	<div class="large-4 medium-4 columns">
+		        		....
+		        	</div>
+		        	<div class="large-4 medium-4 columns">
+		        		<a jsf:id="create-contact" jsf:outcome="create-contact">Create new Contact</a>
+		        	</div>        
+				</div>
+	      	</div>
+		</structure:row>
+		
+		
+	
+	    
+	    
+	    <structure:row>
+			<form jsf:id="contacts">
+				<table class="responsive">
+					<tr>
+						<th>Name</th>
+						<th>Telephone</th>
+						<th>Email</th>
+						<th>Action</th>
+					</tr>
+					<ui:repeat var="contact" value="#{contactController.all}">
+						<tr>
+							<td>#{contact.firstname} #{contact.lastname}</td>
+							<td>#{contact.telephone}</td>
+							<td>#{contact.email}</td>
+							<td><button jsf:id="delete-contact" jsf:action="#{contactController.delete(contact.id)}">Delete</button></td>
+						</tr>
+					</ui:repeat>
+					
+		        </table>		
+			</form>
+	    </structure:row>
+	    
+	</ui:define>
+
+</ui:composition>    
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	 <composite:attribute name="width" required="true" />
+	 <composite:attribute name="height" required="true" />
+	 <composite:attribute name="text" default="[img]" />
+</composite:interface>
+
+<composite:implementation>
+
+<img
+	width="#{cc.attrs.width}"
+	height="#{cc.attrs.height}"
+	src="http://placehold.it/#{cc.attrs.width}x#{cc.attrs.height}&amp;text=#{cc.attrs.text}" />
+
+</composite:implementation>
+</html>

@@ -1,0 +1,104 @@
+
+// === Allgemeines zum Buildskript
+buildscript {
+}
+
+// === Plugins
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'project-report'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+
+defaultTasks 'test', 'war'
+
+sourceCompatibility = 1.7
+tasks.withType(GroovyCompile) { 
+    sourceCompatibility = "2.1"
+    targetCompatibility = "2.1" 
+}  
+
+group = 'de.dennishoersch.web'
+version = '1.0'
+
+war {
+	baseName 'jsf-playground'
+	version ''
+	includeEmptyDirs false
+}
+
+tasks.withType(Compile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+	all*.exclude group: 'commons-logging', module: 'commons-logging'
+}
+
+dependencies {
+	
+	// Servlet enviroment
+	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+	compile 'javax.servlet:jstl:1.2'
+	compile localGroovy()
+
+	// Helper
+	compile 'com.google.guava:guava:+'
+	compile 'joda-time:joda-time:2.3'
+
+	// Logging
+	compile 'ch.qos.logback:logback-classic:1.1.2'
+	compile 'org.slf4j:jcl-over-slf4j:1.7.7' // für Spring Basis etc, JCL=Commons Logging
+	compile 'org.slf4j:jul-to-slf4j:1.7.7' // für MyFaces, JUL=Java util logging 
+
+	compile 'org.javassist:javassist:3.18.1-GA'
+
+
+	// JSON mapping
+	compile 'com.fasterxml.jackson.core:jackson-core:2.3.2'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
+	compile 'com.fasterxml.jackson.core:jackson-annotations:2.3.2'
+	
+	// Caching
+	compile 'net.sf.ehcache:ehcache-core:2.6.8'
+
+	// Bean Validation
+	compile 'org.hibernate:hibernate-validator:5.0.3.Final'
+
+	
+	// JSF
+	def myfacesVersion = '2.2.3'
+	compile "org.apache.myfaces.core:myfaces-api:$myfacesVersion"
+    compile "org.apache.myfaces.core:myfaces-impl:$myfacesVersion"
+	
+	def tomcatVersion = '7.0.42'
+	compile "org.apache.tomcat:tomcat-el-api:$tomcatVersion"
+	compile "org.apache.tomcat:tomcat-jasper-el:$tomcatVersion"
+	
+	def weldVersion = '2.2.Final'
+	compile "org.jboss.weld:weld-api:$weldVersion"
+	compile "org.jboss.weld:weld-core:2.2.0.Final"
+	compile "org.jboss.weld.servlet:weld-servlet:2.2.0.Final"
+	compile "org.jboss.weld:weld-spi:$weldVersion"
+	compile "org.jboss.weld:weld-core-jsf:2.2.0.Final"
+            
+	// Testen
+	testCompile 'org.hamcrest:hamcrest-all:1.3'
+	testCompile 'junit:junit:4.11'
+	
+	testCompile "org.apache.myfaces.core:myfaces-impl-test:$myfacesVersion"
+
+}
+
+test {
+	testLogging {
+			events "started", "passed", "skipped", "failed"
+	}
+	maxParallelForks = 2
+	//forkEvery = 50
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:structure="http://xmlns.jcp.org/jsf/composite/components/structure"
+      >
+      
+<head jsf:id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>JSF-Prototyping</title>
+    
+    <h:outputStylesheet library="css" name="foundation.css"  />
+    <h:outputStylesheet library="css" name="responsive-tables.css"  />
+    <h:outputScript library="js/vendor" name="modernizr.js"  />
+</head>
+
+<body jsf:id="body">
+
+    <structure:row>
+    	<h1>Contact management</h1>
+    </structure:row>
+ 
+    <ui:insert name="content">
+    	[CONTEN]
+    </ui:insert>
+
+    <h:outputScript library="js/vendor" name="jquery.js"  />
+    <h:outputScript library="js" name="foundation.min.js"  />
+    <h:outputScript library="js" name="responsive-tables.js"  />
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface componentType="components.structure.Row">
+	 <composite:facet name="main" />
+	 <composite:facet name="sidebar" />
+</composite:interface>
+
+<composite:implementation>
+
+<div id="#{cc.clientId}" class="row">
+	<ui:fragment rendered="#{cc.useFullContent}">
+		<div class="large-12 columns">
+			<composite:insertChildren />
+		</div>	
+	</ui:fragment>
+	<ui:fragment rendered="#{not cc.useFullContent}">
+		<div class="large-9 columns">
+			<div class="row-main-panel">
+				<composite:renderFacet name="main" />	
+			</div>
+		</div>
+		<div class="large-3 columns">
+			<div class="row-sidebar-panel callout panel radius">
+				<composite:renderFacet name="sidebar" />
+			</div>
+		</div>
+	</ui:fragment>
+</div>
+
+</composite:implementation>
+</html>
