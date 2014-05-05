@@ -1,9 +1,9 @@
-package de.dennishoersch.web.jsf.playground.contacts.view.components.structure;
+package de.dennishoersch.web.jsf.playground.contacts.view.components.form;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UINamingContainer;
 
-@FacesComponent("components.structure.Input")
+@FacesComponent("components.form.Input")
 class Input extends UINamingContainer {
 
 	private static final String REQUIRED = 'required';
